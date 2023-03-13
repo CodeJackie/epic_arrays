@@ -52,15 +52,52 @@ main {
   margin: 50px 0;
 }
 
-.pics {
+.card {
   background: #f0f0f0;
   box-shadow: 0 0 20px #999;
-  border-radius: 10px;
   aspect-ratio: 9 / 16;
   min-height: 250px;
   max-height: 600px;
   height: 50vh;
+  position: relative;
+  transition: all .3s ease-in-out;
+}
+
+.card *, .card {
+  border-radius: 10px;
+}
+
+.pics, .narrative {
+  position: absolute;
+  backface-visibility: hidden;
+}
+.pics {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.narrative {
+  transform: rotateY(-180deg);
+}
+
+.pics {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+  transition: all .3s ease-in-out;
+}
+
+.pics:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.card.flipped .pics {
+  transform: rotateY(-180deg)
+}
+
+.card.flipped .narrative {
+  transform: rotateY(0deg)
 }
