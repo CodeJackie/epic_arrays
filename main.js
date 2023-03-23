@@ -1,5 +1,4 @@
-import './style.css'
-import TALE from './tale.js';
+import './css/style.css'
 
 const app = document.getElementById('app')
 let h1 = document.createElement('h1')
