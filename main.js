@@ -1,4 +1,11 @@
 import './css/style.css'
+import { ignite } from './comp/header'
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  ignite(titleText)
+} )
+
 
 const app = document.getElementById('app')
 let h1 = document.createElement('h1')
@@ -67,10 +74,3 @@ cards.forEach((card) => {
 // })
 //    .then(response => response.json())
 //    .then(response => console.log(JSON.stringify(response)))
-
-
-
-const zero = new TALE('Biological Anomoly', '/img/locations/bioAnomolyPlanets.jpg', '/tales/story1.html', '/tales/story1.html', 'Now see Story 2', 'Story 2', 'Finally, read Story 3', 'Story 3')
-
-
-console.table(zero);

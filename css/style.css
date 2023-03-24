@@ -92,13 +92,12 @@ main {
 .narrative {
   position: absolute;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100%;
   top: 0;
   left: 0;
   overflow: auto;
   z-index: 5;
   text-align: left;
-  background: #f0f0f0;
 }
 
 .content {
