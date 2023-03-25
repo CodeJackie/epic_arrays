@@ -1,10 +1,12 @@
 import './css/style.css'
 import { ignite } from './comp/header'
+import { getImages, array } from './queries/queries'
 
 
 document.addEventListener('DOMContentLoaded', () => {
   ignite(titleText)
 } )
+
 
 
 const app = document.getElementById('app')
@@ -16,6 +18,34 @@ let s = document.createTextNode('Select an image to learn its tale.')
 p.appendChild(s)
 app.appendChild(h1)
 app.appendChild(p)
+
+const imgRow = document.querySelectorAll('.pics')
+
+// //V2 - Using Arrays of API data
+// getImages().then(() => {
+//   console.table(array);
+//   imgRow.forEach(function(Element) {
+//     let x = Math.floor(Math.random() * array.length)
+//     Element.style.backgroundImage = `url(' ${array[x].imgUrl} ')`
+//   })
+// });
+
+//V3 - Using Arrays of API data and preventing duplicates
+const arrayCopy = [...array]
+const chosen = []
+getImages().then(() => {
+  imgRow.forEach(function(Element) {
+    let x = Math.floor(Math.random() * arrayCopy.length)
+    Element.style.backgroundImage = `url(' ${arrayCopy[x].imgUrl} ')`
+    chosen.push(arrayCopy[x])
+    arrayCopy.splice(x, 1)
+  })
+  console.log('chosen images:', chosen)
+});
+
+
+
+
 
 
 function buttonMaker() {
@@ -34,28 +64,26 @@ const div = document.createElement('div')
 
 //Actual App
 
-const locations = [
-  'img/locations/bioAnomolyPlanets.jpg',
-  'img/locations/fantasyWorld.jpg',
-  'img/locations/giantTornado.jpg',
-  'img/locations/lostStaircase.jpg',
-  'img/locations/meteorStrike.jpg',
-  'img/locations/ruggedPlanet.jpg',
-  'img/locations/spaceExplorer.jpg',
-  'img/locations/spaceMining.jpg',
-  'img/locations/spaceStation.jpg',
-  'img/locations/underwaterCity.jpg'
-]
-const characters = []
-const text = []
+// const locations = [
+//   'img/locations/bioAnomolyPlanets.jpg',
+//   'img/locations/fantasyWorld.jpg',
+//   'img/locations/giantTornado.jpg',
+//   'img/locations/lostStaircase.jpg',
+//   'img/locations/meteorStrike.jpg',
+//   'img/locations/ruggedPlanet.jpg',
+//   'img/locations/spaceExplorer.jpg',
+//   'img/locations/spaceMining.jpg',
+//   'img/locations/spaceStation.jpg',
+//   'img/locations/underwaterCity.jpg'
+// ]
+// const characters = []
+// const text = []
 
-const imgRow = document.querySelectorAll('.pics')
-
-//V1 - Using Arrays of data
-imgRow.forEach(function(Element) {
-  let x = Math.floor(Math.random() * 10)
-  Element.style.backgroundImage = `url(' ${locations[x]} ')`
-})
+// //V1 - Using Arrays of data
+// imgRow.forEach(function(Element) {
+//   let x = Math.floor(Math.random() * 10)
+//   Element.style.backgroundImage = `url(' ${locations[x]} ')`
+// })
 
 //Event Listeners
 const cards = document.querySelectorAll('.card')
