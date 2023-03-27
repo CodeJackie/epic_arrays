@@ -31,16 +31,22 @@ const imgRow = document.querySelectorAll('.pics')
 // });
 
 //V3 - Using Arrays of API data and preventing duplicates
-const arrayCopy = [...array]
-const chosen = []
+
+let chosen = [];
 getImages().then(() => {
-  imgRow.forEach(function(Element) {
-    let x = Math.floor(Math.random() * arrayCopy.length)
-    Element.style.backgroundImage = `url(' ${arrayCopy[x].imgUrl} ')`
-    chosen.push(arrayCopy[x])
-    arrayCopy.splice(x, 1)
-  })
-  console.log('chosen images:', chosen)
+  let arrayCopy = [...array];
+    imgRow.forEach(function(Element) {
+        if (arrayCopy.length > 0) {
+            let x = Math.floor(Math.random() * arrayCopy.length);
+            Element.style.backgroundImage = `url('${arrayCopy[x].imgUrl}')`;
+            chosen.push(arrayCopy[x]);
+            arrayCopy.splice(x, 1);
+        } else {
+            console.error('No more unique images available');
+            // You can handle this case based on your requirements.
+        }
+    });
+    console.log('chosen images:', chosen);
 });
 
 
