@@ -1,6 +1,6 @@
 import './css/style.css'
 import { ignite } from './comp/header'
-import { getImages, array } from './queries/queries'
+import { getImages, array, getStories, epicArray } from './queries/queries'
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -32,22 +32,35 @@ const imgRow = document.querySelectorAll('.pics')
 
 //V3 - Using Arrays of API data and preventing duplicates
 
-let chosen = [];
+let chosen = []
 getImages().then(() => {
-  let arrayCopy = [...array];
+  let arrayCopy = [...array]
     imgRow.forEach(function(Element) {
         if (arrayCopy.length > 0) {
-            let x = Math.floor(Math.random() * arrayCopy.length);
-            Element.style.backgroundImage = `url('${arrayCopy[x].imgUrl}')`;
-            chosen.push(arrayCopy[x]);
-            arrayCopy.splice(x, 1);
+            let x = Math.floor(Math.random() * arrayCopy.length)
+            Element.style.backgroundImage = `url('${arrayCopy[x].imgUrl}')`
+            chosen.push(arrayCopy[x])
+            arrayCopy.splice(x, 1)
         } else {
-            console.error('No more unique images available');
+            console.error('No more unique images available')
             // You can handle this case based on your requirements.
         }
     });
-    console.log('chosen images:', chosen);
+    console.log('chosen images:', chosen)
 });
+
+let epic = []  
+let epicMatch = []
+Promise.all([getImages(), getStories()]).then(() => {
+    epicArray.forEach((epicItem) => {
+      chosen.forEach((chosenItem) => {
+        if(epicItem.image.id === chosenItem.id) {
+          epicMatch.push(epicItem)
+        }
+      })
+    })
+    console.log('Epic Items:', epicMatch)
+})
 
 
 

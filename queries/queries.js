@@ -1,4 +1,5 @@
 const array = []
+const epicArray = []
 
 function sendQuery(query) {
     return fetch('http://localhost:9343/graphql', {
@@ -39,5 +40,37 @@ function getImages() {
     .catch(error => console.error('Error getting images:', error));
 
 }
+function getStories() {
 
-export { getImages, array }
+    const query = `
+        {
+            stories {
+                id
+                title
+                date
+                content
+                image {
+                    id
+                    imgUrl
+                    imgAlt
+                    imgTitle
+                }
+            }
+        }
+    
+`
+    return sendQuery(query) 
+    .then(data => {
+        const stories = data.data.stories
+  
+
+        stories.forEach(story => {
+            epicArray.push(story)
+        })
+        
+    })
+    .catch(error => console.error('Error getting stories:', error));
+
+}
+
+export { getImages, array, getStories, epicArray }
