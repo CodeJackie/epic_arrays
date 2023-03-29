@@ -21,15 +21,6 @@ app.appendChild(p)
 
 const imgRow = document.querySelectorAll('.pics')
 
-// //V2 - Using Arrays of API data
-// getImages().then(() => {
-//   console.table(array);
-//   imgRow.forEach(function(Element) {
-//     let x = Math.floor(Math.random() * array.length)
-//     Element.style.backgroundImage = `url(' ${array[x].imgUrl} ')`
-//   })
-// });
-
 //V3 - Using Arrays of API data and preventing duplicates
 
 let chosen = []
@@ -39,6 +30,7 @@ getImages().then(() => {
         if (arrayCopy.length > 0) {
             let x = Math.floor(Math.random() * arrayCopy.length)
             Element.style.backgroundImage = `url('${arrayCopy[x].imgUrl}')`
+            Element.setAttribute('data-custom-id', arrayCopy[x].id)
             chosen.push(arrayCopy[x])
             arrayCopy.splice(x, 1)
         } else {
@@ -81,43 +73,25 @@ buttonMaker()
 const picArray = []
 const div = document.createElement('div')
 
-//Actual App
 
-// const locations = [
-//   'img/locations/bioAnomolyPlanets.jpg',
-//   'img/locations/fantasyWorld.jpg',
-//   'img/locations/giantTornado.jpg',
-//   'img/locations/lostStaircase.jpg',
-//   'img/locations/meteorStrike.jpg',
-//   'img/locations/ruggedPlanet.jpg',
-//   'img/locations/spaceExplorer.jpg',
-//   'img/locations/spaceMining.jpg',
-//   'img/locations/spaceStation.jpg',
-//   'img/locations/underwaterCity.jpg'
-// ]
-// const characters = []
-// const text = []
-
-// //V1 - Using Arrays of data
-// imgRow.forEach(function(Element) {
-//   let x = Math.floor(Math.random() * 10)
-//   Element.style.backgroundImage = `url(' ${locations[x]} ')`
-// })
 
 //Event Listeners
 const cards = document.querySelectorAll('.card')
 cards.forEach((card) => {
   card.addEventListener('click', function() {
-    card.classList.toggle('flipped');
+    const data = this.getAttribute('data-custom-id')
+    console.log('click')
+    console.log(this)
+    console.log(this.getAttribute('data')) //returns null
+
+    const nar = document.getElementById('narrative')
+    const title = document.createElement('h2')
+    const content = document.createElement('div')
+    const xbox = document.createElement('p')
+
   });
 });
 
-//V2 - Using JSON like an API
-// fetch('fakeapi.json', {
-//     method: 'GET',
-//     headers: {
-//         'Accept': 'application/json',
-//     },
-// })
-//    .then(response => response.json())
-//    .then(response => console.log(JSON.stringify(response)))
+//On Click, select one of the matching stories to the image id
+//On click, match the ids in StoryArray to the Data Attribute of the selected story
+//On Click, set data attribute as variable. EpicArray.forEach(item() => { if(data.val === EpicArray.id) { epic.push(item)}})
