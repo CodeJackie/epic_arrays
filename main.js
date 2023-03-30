@@ -19,6 +19,20 @@ p.appendChild(s)
 app.appendChild(h1)
 app.appendChild(p)
 
+function buttonMaker() {
+  const button = document.createElement('button')
+  const text = document.createTextNode('I serve no purpose')
+  button.setAttribute('name', 'push me')
+  button.appendChild(text)
+  app.appendChild(button)
+
+}
+
+buttonMaker()
+
+const picArray = []
+const div = document.createElement('div')
+
 const imgRow = document.querySelectorAll('.pics')
 
 //V3 - Using Arrays of API data and preventing duplicates
@@ -41,57 +55,61 @@ getImages().then(() => {
     console.log('chosen images:', chosen)
 });
 
-let epic = []  
-let epicMatch = []
-Promise.all([getImages(), getStories()]).then(() => {
-    epicArray.forEach((epicItem) => {
-      chosen.forEach((chosenItem) => {
-        if(epicItem.image.id === chosenItem.id) {
-          epicMatch.push(epicItem)
-        }
-      })
+
+//Match all images to all possible stories
+//refactor to return promise
+
+function matchmaker() {
+  return new Promise ((resolve) => {
+    
+    let epicMatch = []
+    Promise.all([getImages(), getStories()]).then(() => {
+        epicArray.forEach((epicItem) => {
+          chosen.forEach((chosenItem) => {
+            if(epicItem.image.id === chosenItem.id) {
+              epicMatch.push(epicItem)
+            }
+          })
+        })
+        console.log('Epic Items:', epicMatch)
+        resolve(epicMatch)
     })
-    console.log('Epic Items:', epicMatch)
+  })
+}
+
+//Event Listeners
+matchmaker().then((epicMatch) => {
+  let epic = []
+  const cards = document.querySelectorAll('.pics')
+  cards.forEach((card) => {
+    card.addEventListener('click', function() {
+      const customId = this.getAttribute('data-custom-id')
+      console.log(customId)
+      
+      let matchFound = false
+      for (const match of epicMatch) {
+        if (customId === match.id) {
+          epic.push(match)
+          console.log(epic)
+          matchFound = true
+          break
+        }
+      }
+      
+      if (!matchFound) {
+        console.log("this didn't work. Something isn't right.")
+      }
+    })
+  })
+
 })
 
 
 
-
-
-
-function buttonMaker() {
-  const button = document.createElement('button')
-  const text = document.createTextNode('I serve no purpose')
-  button.setAttribute('name', 'push me')
-  button.appendChild(text)
-  app.appendChild(button)
-
-}
-
-buttonMaker()
-
-const picArray = []
-const div = document.createElement('div')
-
-
-
-//Event Listeners
-const cards = document.querySelectorAll('.card')
-cards.forEach((card) => {
-  card.addEventListener('click', function() {
-    const data = this.getAttribute('data-custom-id')
-    console.log('click')
-    console.log(this)
-    console.log(this.getAttribute('data')) //returns null
-
-    const nar = document.getElementById('narrative')
-    const title = document.createElement('h2')
-    const content = document.createElement('div')
-    const xbox = document.createElement('p')
-
-  });
-});
-
+ // const nar = document.getElementById('narrative')
+    // const title = document.createElement('h2')
+    // const content = document.createElement('div')
+    // const xbox = document.createElement('p')
 //On Click, select one of the matching stories to the image id
 //On click, match the ids in StoryArray to the Data Attribute of the selected story
 //On Click, set data attribute as variable. EpicArray.forEach(item() => { if(data.val === EpicArray.id) { epic.push(item)}})
