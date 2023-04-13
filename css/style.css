@@ -28,8 +28,26 @@ nav {
   z-index: 3;
 }
 
+button {
+    outline: none;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: 1px solid transparent;
+    box-shadow: 10px 10px 20px #aaaab5;
+    cursor: pointer;
+}
+
+button:active {
+  border-top: 0;
+  border-left: 0;
+  box-shadow: 3px 3px 8px #aaaab5;
+  margin-bottom: 1px;
+}
+
 #logo h2 {
   text-transform: uppercase;
+  margin: 10px 0;
 }
 
 #menu ul {
@@ -42,15 +60,29 @@ nav {
 main {
   margin-top: 120px;
   padding: 0 10%;
-  min-height: calc(100vh - 120px);
-  text-align: center;
+  min-height: calc(100vh - 181px);
 }
 
-#cheating {
+#container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+#greeting h1 {
+  margin: 0;
+  line-height: 1;
+}
+
+#greeting p:first-of-type {
+  margin: 10px 0 15px;
+  line-height: 1.25;
+}
+
+#app {
   display: flex;
   justify-content: center;
   gap: 2.5rem;
-  margin: 50px 0;
 }
 
 .card {
@@ -134,4 +166,12 @@ main {
   border-radius: 5px;
   padding: 2px 5px;
   cursor: pointer;
+}
+
+footer {
+  background: #ace0f9;
+  display: flex;
+  padding: 0 5%;
+  font-size: 14px;
+  height: 61px;
 }
