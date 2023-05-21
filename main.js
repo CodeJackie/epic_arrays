@@ -86,24 +86,29 @@ matchmaker().then((epicMatch) => {
               const flex = document.createElement('div')//.classList.add('content')
               const flexy1 = document.createElement('div')
               const flexy2 = document.createElement('div')//.classList.add('textContent')
+              const xbox = document.createElement('div') //.classList.add('xbox') .innerHTML('x')
               const title = document.createTextNode(epic[x].title)
-              const content = document.createTextNode(epic[x].content)
+              //const content = document.createTextNode(epic[x].content)
               const date = document.createTextNode(epic[x].date)
               const img = epic[x].image.imgUrl //returns [object]
               flexy1.style.backgroundImage = `url('${img}')`
+              xbox.innerHTML = 'x';
               flex.appendChild(flexy1)
               h2.appendChild(title)
               flexy2.appendChild(h2)
               p.appendChild(date)
               flexy2.appendChild(p)
-              div.appendChild(content)
+              p.insertAdjacentHTML('afterend', epic[x].content)
+              flexy2.appendChild(xbox)
               flexy2.appendChild(div)
               flex.appendChild(flexy2)
               nar.appendChild(flex)
               flex.classList.add('content')
+              flexy1.classList.add('picContent')
               flexy2.classList.add('textContent')
+              xbox.classList.add('xbox')
               nar.style.display = 'block'
-              
+              xbox.addEventListener('click', reset)
               
               epicCopy = []     
           }
@@ -113,8 +118,14 @@ matchmaker().then((epicMatch) => {
   })
 
 
-
+   
+  function reset() {
+    document.getElementById('narrative').style.display = "none"   
+    document.getElementsByClassName('content')[0].remove()      
+  }
 
 //On Click, select one of the matching stories to the image id
 //On click, match the ids in StoryArray to the Data Attribute of the selected story
 //On Click, set data attribute as variable. EpicArray.forEach(item() => { if(data.val === EpicArray.id) { epic.push(item)}})
+
+//On Click of X, close window and wipe content

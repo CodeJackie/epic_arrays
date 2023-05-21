@@ -12,6 +12,7 @@ html, body {
   background-repeat: no-repeat;
   font-family: 'Epilogue', Helvetica, Arial, sans-serif;
   color: #202020;
+  height: 100%;
 }
 
 nav {
@@ -55,6 +56,7 @@ button:active {
   list-style: none;
   gap: 2rem;
   text-align: right;
+  margin: 0;
 }
 
 main {
@@ -82,7 +84,7 @@ main {
 #app {
   display: flex;
   justify-content: center;
-  gap: 2.5rem;
+  gap: 1.5rem;
 }
 
 .card {
@@ -91,7 +93,7 @@ main {
   aspect-ratio: 9 / 16;
   min-height: 250px;
   max-height: 600px;
-  height: 50vh;
+  height: 30vh;
   position: relative;
   transition: all .3s ease-in-out;
 }
@@ -130,8 +132,21 @@ main {
 }
 
 .content {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  height: 100vh;
   background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+}
+
+.picContent {
+  background-position: center;
+  background-size: cover;
+  aspect-ratio: 2/3;
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 1;
 }
 
 .textContent h2 {
@@ -154,6 +169,12 @@ main {
 
 .textContent {
   padding: 3%;
+  overflow: auto;
+}
+
+.textContent p {
+  line-height: 1.5;
+  font-size: clamp(14px, 16px, 18px);
 }
 
 .xbox {
@@ -173,5 +194,9 @@ footer {
   display: flex;
   padding: 0 5%;
   font-size: 14px;
-  height: 61px;
+  height: 65px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
