@@ -3,9 +3,11 @@ import { ignite } from './comp/header'
 import { getImages, array, getStories, epicArray } from './queries/queries'
 
 
+
 document.addEventListener('DOMContentLoaded', () => {
   ignite(titleText)
 } )
+
 
 
 
@@ -121,7 +123,8 @@ matchmaker().then((epicMatch) => {
    
   function reset() {
     document.getElementById('narrative').style.display = "none"   
-    document.getElementsByClassName('content')[0].remove()      
+    document.getElementsByClassName('content')[0].remove()  
+    document.location.reload()    
   }
 
 //On Click, select one of the matching stories to the image id
