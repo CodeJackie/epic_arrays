@@ -58,6 +58,22 @@ button:active {
   margin: 0;
 }
 
+#menu li a {
+  color: #13547a;
+  font-weight: 500;
+  font-size: clamp(14px, 16px, 18px);
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 6px;
+}
+
+#menu li a:hover, 
+#menu li a:active {
+  background: #b39ae2;
+  border-radius: 50% 100%;
+  color: #fff;
+}
+
 main {
   display: flex;
   margin-top: 120px;
@@ -187,12 +203,12 @@ main {
 .xbox {
   position: absolute;
   top: 15px;
-  right: 15px;
+  right: 25px;
   font-weight: 700;
   font-size: 2vw;
   background: #ffffff99;
-  border-radius: 5px;
-  padding: 2px 5px;
+  border-radius: 50%;
+  padding: 5px 12px;
   cursor: pointer;
 }
 

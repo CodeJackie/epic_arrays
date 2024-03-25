@@ -51,7 +51,7 @@ function createHeader() {
     const li = document.createElement('li')
     const a = document.createElement('a')
 
-    li.textContent = link.text
+    a.textContent = link.text
     a.href = link.href
     menu.id = "menu"
 

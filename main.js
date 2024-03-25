@@ -30,7 +30,6 @@ getImages().then(() => {
             arrayCopy.splice(x, 1)
         } else {
             console.error('No more unique images available')
-            // You can handle this case based on your requirements.
         }
     });
     console.log('chosen images:', chosen)
