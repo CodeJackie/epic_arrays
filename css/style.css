@@ -183,6 +183,11 @@ main {
   margin: 0;
 }
 
+.textContent h3 {
+    margin: 20px 0 5px;
+    font-size: 20px;
+}
+
 #placeholder {
   max-height: 100vh;
   width: 45%;
@@ -198,6 +203,7 @@ main {
 .textContent p {
   line-height: 1.5;
   font-size: clamp(14px, 16px, 18px);
+  margin-top: 0;
 }
 
 .xbox {
